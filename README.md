@@ -23,7 +23,7 @@ bitcoin_rpc.call('getbalance', [], function (err, res) {
   if (err !== null) {
     console.log('I have an error :( ' + err + ' ' + res.error)
   } else {
-    console.log('Yay! I need to do whatevere now with ' + res.result)
+    console.log('Yay! I need to do whatever now with ' + res.result)
   }
 })
 ```
