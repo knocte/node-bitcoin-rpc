@@ -20,8 +20,14 @@ var bitcoin_rpc = require('node-bitcoin-rpc')
 
 bitcoin_rpc.init('host', port, 'rpc_username', rpc_pass)
 bitcoin_rpc.call('getbalance', [], function (err, res) {
-  if (err !== null) {
-    console.log('I have an error :( ' + err + ' ' + res.error)
+  if (err) {
+    let errMsg = "Error when calling bitcoin RPC: " + err;
+    console.log(errMsg);
+    throw new Error(errMsg);
+  } else if (res.error) {
+    let errMsg = "Error received by bitcoin RPC: " + res.error.message + " (" + res.error.code + ")";
+    console.log(errMsg);
+    throw new Error(errMsg);
   } else {
     console.log('Yay! I need to do whatever now with ' + res.result)
   }
